@@ -1,0 +1,727 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="虽然从事了两年手机协议开发，但是自己并未了解行业各个领域的需求，也就没有思考过如何在工作中着重培养自己的哪一方面能力。从而，有比较好的资源也没能利用上，不过离职后，跳出原来的环境，毕竟让我认识到了行业需求，以及对自己的定位。也就是说，这两年多的经验，虽然是闭眼前行，毕竟是朝着大方向走出了一步。
+基于两年的工作经验，大部分徘徊于基本的协议流程分析与log分析，另外加上大量的出差支援测试，相对于开发，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于协议测试">
+<meta property="og:url" content="http://suger-lim.github.io/2017/03/27/关于协议测试/index.html">
+<meta property="og:site_name" content="蔺帅的博客">
+<meta property="og:description" content="虽然从事了两年手机协议开发，但是自己并未了解行业各个领域的需求，也就没有思考过如何在工作中着重培养自己的哪一方面能力。从而，有比较好的资源也没能利用上，不过离职后，跳出原来的环境，毕竟让我认识到了行业需求，以及对自己的定位。也就是说，这两年多的经验，虽然是闭眼前行，毕竟是朝着大方向走出了一步。
+基于两年的工作经验，大部分徘徊于基本的协议流程分析与log分析，另外加上大量的出差支援测试，相对于开发，">
+<meta property="og:updated_time" content="2017-03-29T10:00:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于协议测试">
+<meta name="twitter:description" content="虽然从事了两年手机协议开发，但是自己并未了解行业各个领域的需求，也就没有思考过如何在工作中着重培养自己的哪一方面能力。从而，有比较好的资源也没能利用上，不过离职后，跳出原来的环境，毕竟让我认识到了行业需求，以及对自己的定位。也就是说，这两年多的经验，虽然是闭眼前行，毕竟是朝着大方向走出了一步。
+基于两年的工作经验，大部分徘徊于基本的协议流程分析与log分析，另外加上大量的出差支援测试，相对于开发，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://suger-lim.github.io/2017/03/27/关于协议测试/"/>
+
+
+
+
+
+  <title> 关于协议测试 | 蔺帅的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">蔺帅的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://suger-lim.github.io/2017/03/27/关于协议测试/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="LinShuai">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/suger.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="蔺帅的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="蔺帅的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                关于协议测试
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-27T23:38:09+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/测试/" itemprop="url" rel="index">
+                    <span itemprop="name">测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>虽然从事了两年手机协议开发，但是自己并未了解行业各个领域的需求，也就没有思考过如何在工作中着重培养自己的哪一方面能力。从而，有比较好的资源也没能利用上，不过离职后，跳出原来的环境，毕竟让我认识到了行业需求，以及对自己的定位。也就是说，这两年多的经验，虽然是闭眼前行，毕竟是朝着大方向走出了一步。</p>
+<p>基于两年的工作经验，大部分徘徊于基本的协议流程分析与log分析，另外加上大量的出差支援测试，相对于开发，对测试的了解程度反而更加深一些。那么做了这么多测试相关的事情，由于出发点的不同（测试的出发点是找出更多的问题，开发的出发点是解决测出的问题），也没有站在测试的角度去考虑如何让产品的功能更理想。</p>
+<p>所以这篇博客的主要目的是，反思总结，如何做好协议测试。</p>
+<h2 id="我做过的协议测试工作"><a href="#我做过的协议测试工作" class="headerlink" title="我做过的协议测试工作"></a>我做过的协议测试工作</h2><h3 id="手机基本功能测试"><a href="#手机基本功能测试" class="headerlink" title="手机基本功能测试"></a>手机基本功能测试</h3><p>手机基本功能测试，主要包括搜网、网络切换、通话与紧急呼叫、短、彩信等。</p>
+<p>1.搜网<br>（1）针对不同的sim卡（CMCC/CU），以及手机支持的RAT，观察手机开机成功注册网络，并产生数据上下行图标的正确与否和耗时；<br>（2）在设置中选择手动搜网，手机能在一定时间内罗列出各个运营商支持的网络类型，并根据sim卡，标注各个网络类型的支持与否，并能选择驻留；<br>（3）手机驻网（4G）成功以后,将手机带入屏蔽室，等待手机掉网之后（5分钟、10分钟不等），拿出屏蔽室，观察手机重新驻网到4G的时间。<br>2.网络切换<br>（1）在手机设置中禁止选择支持的RAT（如4/3/2g-&gt;3/2g-&gt;仅2g），并观察手机是否成功切换网络并驻留；<br>（2）寻找4G信号弱的位置，尝试让手机进行小区重选，驻留到3G或2G；重新拿回4G信号好的位置，手机是否能重选回4G小区。<br>3.通话与紧急呼叫<br>（1）主叫、被叫通话是否能正常振铃、接通、通话、挂断、是否有杂音等；<br>（2）能否进行正常保持通话、呼叫转移、呼叫等待的设置；<br>（3）能否在手机无卡、有卡的情况下进行紧急呼叫（112）；<br>（4）拨打通话手机网络能否进行正常的CSFB(CMCC要求4g-&gt;2g、CU要求4g-&gt;3g)。<br>4.短、彩信<br>（1）手机是否能够正常收发短信、彩信；<br>（2）手机在通话过程中能否正常收发短信、彩信。</p>
+<h3 id="路测–手机通话掉话率"><a href="#路测–手机通话掉话率" class="headerlink" title="路测–手机通话掉话率"></a>路测–手机通话掉话率</h3><p>针对手机移动过程中掉话率的测试，三星针对每一款手机都会选择市场上各种品牌型号的手机进行对比测试。<br>例如，绕着天津外环线，测试掉话率；并抓取AP和CP log进行掉话分析。<br>测试准备：<br>1.样机DUT C7000 4台标记D1、D2、D3、D4，REF G9200 4台标记R1、R2、R3、R4<br>2.SIM卡8个（4个CMCC SIM D1/D2/R1/R2、4个CU SIM D3/D4/R3/R4）<br>测试过程：<br>1.MO-&gt;MT: D1-&gt;D2;D3-&gt;D4;R1-&gt;R2;R3-&gt;R4  -&gt;通过实验现象对比C7000与G9200掉话率<br>2.MO-&gt;MT: D1-&gt;R1;D2-&gt;R2;R3-&gt;D3;R4-&gt;D4  -&gt;通过分析MO/MT log对比C7000与G9200的掉话率<br>3.MO-&gt;MT: D1-&gt;公司座机；D2-&gt;公司座机；公司座机-&gt;D3；公司座机-&gt;D4 -&gt;通过实验现象对比C7000与G9200掉话率<br>4.MO-&gt;MT: R1-&gt;公司座机；R2-&gt;公司座机；公司座机-&gt;R3；公司座机-&gt;R4 -&gt;通过实验现象对比C7000与G9200掉话率</p>
+<h3 id="针对某问题的debug测试"><a href="#针对某问题的debug测试" class="headerlink" title="针对某问题的debug测试"></a>针对某问题的debug测试</h3><p>很多时候出现的市场问题，必须到当地才能复现问题，出差参与现场debug测试。通常面对sometimes问题，要进行大量重复性测试。</p>
+<p>例如：<br>问题描述：<br>2015年2月份，G9006W(S5 CU向双卡单通)的市场问题-&gt;卡1（LTE FDD）打电话后，卡2(GSM)无法接听电话（sometimes问题）。</p>
+<p>复现问题：<br>三星CMT北京支援人员无法复现问题，最后不了了之。帅哥，临危受命，只身出差前往现场，找到售后部门索取问题样机，啃着面包，从18点复测到0点以后(大冬天的，蹲在在一个无暖气的房间里)，终于复现问题，并抓取了大量的log，且进行了初步分析，发现问题不仅仅是卡1打电话后，卡2无法接听电话，而是复现问题是，卡1 CSFB到WCMDA上语音通话之后，无法Reselect to LTE。</p>
+<p>分析问题：<br>通过简单分析，怀疑问题的根源出在卡1无法Reselect to LTE，认为通话结束后，WCDMA的RRC connection release 出现了问题。<br>由于是单通手机，所有卡1没有正常释放栈资源，卡1自然无法进行重选，卡2也就无法收到paging。<br>然后将log传给公司同事，进行深度分析，并修改。</p>
+<p>验证版本：<br>得到同事的新release版本（多次多个版本）之后，进行大量复测（包括除G9006W之外的CU向双卡手机如Rossa、Fortuna,也进行水平展开得到新版本）。<br>最终修正了问题，卡2也不再出现无法接收paging消息。</p>
+<p>问题总结：<br>1.如何发现问题的？<br>只有在卡1无法回到LTE的情况发生下，才会出现卡2无法接收被叫。这是经过大量测试，才发现的。因为根据问题一开始的描述，我们通常认为挂断卡1通话之后，卡1的RRC connection是正常release的，所以在节约时间的前提下会默认卡1会回到LTE，直接对卡2进行呼叫。最后在多次复现问题后，才发现卡1无法回到LTE。并由此得出了一个观点：卡1无法回到LTE就是卡2无法接收paging的根本现象。<br>2.测试需要耐心、需要清晰敏捷的思维去对发生的现象进行定位。真正找到问题的时候，其实是非常有成就感的。</p>
+<h3 id="支援移动入库实验室预测试"><a href="#支援移动入库实验室预测试" class="headerlink" title="支援移动入库实验室预测试"></a>支援移动入库实验室预测试</h3><p>出差到实验室参与移动入库预测试，全部测试达到移动入库的各种认证要求。其中包括：LTE RRM/RF、TDS RRM、LTE USIM、VoLTE NSIOT、VoLTE PCT、LTE高铁性能测试等。</p>
+<p>LTE RRM是无线资源管理的测试，它包含的测试点有RSRP的测量、RSRQ的测量、随机接入、重选、切换、TAU、RRC re-establish、上行同步状态监测、事件触发事件报告等。</p>
+<p>LTE PCT是协议一致性的测试，它与RRM不同的地方，更多的不是关注无线资源的测量是否准确，而是某一个协议流程是否满足3GPP协议规定。其中测试case与协议case是对应的。PCT的测试举例：<br>6.1.2.2a 小区选择S准则；<br>7.1.6.1  DRX；<br>7.2.3.16 AM重传功能；<br>7.3.1.3  PDCP映射到RLC UM实体U；<br>8.1.1.2  E接收Paging消息指示更新系统消息；<br>9.1.2.4  UE鉴权功能；<br>12.2.1   E-UTRAN无线承载功能。</p>
+<p>TDS RRM与LTE RRM测试类别和测试指标基本类似,测试流程的设计思路基本一致，TDS RRM测试有时需要双天线，而LTE RRM所有用例都使用单天线；另外，TDS RRM设置了6个小区环境，除了需要和UE交互的1-2个小区外，其他的均为背景小区。LTE RRM不需要北京小区。</p>
+<p>LTE USIM的测试一般都和驻网、PIN码相关。</p>
+<p>VoLTE PCT是VoLTE协议一致性的相关测试，与LTE PCT类似。</p>
+<p>VoLTE NSIOT主要是包含的测试内容比较多，驻网、Voice Call、Video Call、IPv4/IPv6、Codec、补充业务、移动性（Inter-EUTRAN/Inter RAT）</p>
+<h2 id="协议测试还是协议开发"><a href="#协议测试还是协议开发" class="headerlink" title="协议测试还是协议开发"></a>协议测试还是协议开发</h2><p>比较常见的观点是，开发人员的技能能力、待遇、发展前景看起来要比测试人员要好很多，所以，我潜意识里的观点也是，既然有开发背景，如果有机会还是从事开发要更好一些。我不能否认自己的潜意识，但是，也不能忽略一个更客观的事实，我在测试的相关工作中，更游刃有余，更能体现自己的价值。所以，再挖掘一下自己的意识深处，我认为从事测试工作会更适合我。这也是为什么写这样一篇博客来总结接下来的工作方向。</p>
+<h2 id="怎样开始从事协议测试工作"><a href="#怎样开始从事协议测试工作" class="headerlink" title="怎样开始从事协议测试工作"></a>怎样开始从事协议测试工作</h2><p>首先就是找一份工作了，现在比较倾向于实验室测试，因为可以接触到基站模拟器（各类仪表），当然如果是基站类的测试，就会接触到很多核心网部分的协议内容，能够从协议上出发，直接与测试信令界面交互，这是对丰富协议知识的一个很好的方向。<br>其次，根据大部分协议测试招聘的岗位来看，实验室测试工作者往往也要参与场测。<br>最终，希望能尽快找到合适的工作。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/22/为什么写博客/" rel="next" title="为什么写博客">
+                <i class="fa fa-chevron-left"></i> 为什么写博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/31/LTE开机驻网流程/" rel="prev" title="LTE开机驻网流程">
+                LTE开机驻网流程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8yNzg0OS80NDI2"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/suger.jpeg"
+               alt="LinShuai" />
+          <p class="site-author-name" itemprop="name">LinShuai</p>
+          <p class="site-description motion-element" itemprop="description">我是蔺帅，在这里我为大家分享无线通信协议相关的知识</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/suger-lim" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/SugerLim" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#我做过的协议测试工作"><span class="nav-number">1.</span> <span class="nav-text">我做过的协议测试工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#手机基本功能测试"><span class="nav-number">1.1.</span> <span class="nav-text">手机基本功能测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路测–手机通话掉话率"><span class="nav-number">1.2.</span> <span class="nav-text">路测–手机通话掉话率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#针对某问题的debug测试"><span class="nav-number">1.3.</span> <span class="nav-text">针对某问题的debug测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支援移动入库实验室预测试"><span class="nav-number">1.4.</span> <span class="nav-text">支援移动入库实验室预测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协议测试还是协议开发"><span class="nav-number">2.</span> <span class="nav-text">协议测试还是协议开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎样开始从事协议测试工作"><span class="nav-number">3.</span> <span class="nav-text">怎样开始从事协议测试工作</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LinShuai</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
