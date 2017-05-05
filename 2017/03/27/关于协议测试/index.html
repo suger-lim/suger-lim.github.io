@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="蔺帅的博客">
 <meta property="og:description" content="虽然从事了两年手机协议开发，但是自己并未了解行业各个领域的需求，也就没有思考过如何在工作中着重培养自己的哪一方面能力。从而，有比较好的资源也没能利用上，不过离职后，跳出原来的环境，毕竟让我认识到了行业需求，以及对自己的定位。也就是说，这两年多的经验，虽然是闭眼前行，毕竟是朝着大方向走出了一步。
 基于两年的工作经验，大部分徘徊于基本的协议流程分析与log分析，另外加上大量的出差支援测试，相对于开发，">
-<meta property="og:updated_time" content="2017-03-29T10:00:00.000Z">
+<meta property="og:updated_time" content="2017-05-05T05:10:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于协议测试">
 <meta name="twitter:description" content="虽然从事了两年手机协议开发，但是自己并未了解行业各个领域的需求，也就没有思考过如何在工作中着重培养自己的哪一方面能力。从而，有比较好的资源也没能利用上，不过离职后，跳出原来的环境，毕竟让我认识到了行业需求，以及对自己的定位。也就是说，这两年多的经验，虽然是闭眼前行，毕竟是朝着大方向走出了一步。
@@ -352,7 +352,7 @@
       
         <p>虽然从事了两年手机协议开发，但是自己并未了解行业各个领域的需求，也就没有思考过如何在工作中着重培养自己的哪一方面能力。从而，有比较好的资源也没能利用上，不过离职后，跳出原来的环境，毕竟让我认识到了行业需求，以及对自己的定位。也就是说，这两年多的经验，虽然是闭眼前行，毕竟是朝着大方向走出了一步。</p>
 <p>基于两年的工作经验，大部分徘徊于基本的协议流程分析与log分析，另外加上大量的出差支援测试，相对于开发，对测试的了解程度反而更加深一些。那么做了这么多测试相关的事情，由于出发点的不同（测试的出发点是找出更多的问题，开发的出发点是解决测出的问题），也没有站在测试的角度去考虑如何让产品的功能更理想。</p>
-<p>所以这篇博客的主要目的是，反思总结，如何做好协议测试。</p>
+<p>所以这篇博客的主要目的是，反思总结，做过哪些测试工作。</p>
 <h2 id="我做过的协议测试工作"><a href="#我做过的协议测试工作" class="headerlink" title="我做过的协议测试工作"></a>我做过的协议测试工作</h2><h3 id="手机基本功能测试"><a href="#手机基本功能测试" class="headerlink" title="手机基本功能测试"></a>手机基本功能测试</h3><p>手机基本功能测试，主要包括搜网、网络切换、通话与紧急呼叫、短、彩信等。</p>
 <p>1.搜网<br>（1）针对不同的sim卡（CMCC/CU），以及手机支持的RAT，观察手机开机成功注册网络，并产生数据上下行图标的正确与否和耗时；<br>（2）在设置中选择手动搜网，手机能在一定时间内罗列出各个运营商支持的网络类型，并根据sim卡，标注各个网络类型的支持与否，并能选择驻留；<br>（3）手机驻网（4G）成功以后,将手机带入屏蔽室，等待手机掉网之后（5分钟、10分钟不等），拿出屏蔽室，观察手机重新驻网到4G的时间。<br>2.网络切换<br>（1）在手机设置中禁止选择支持的RAT（如4/3/2g-&gt;3/2g-&gt;仅2g），并观察手机是否成功切换网络并驻留；<br>（2）寻找4G信号弱的位置，尝试让手机进行小区重选，驻留到3G或2G；重新拿回4G信号好的位置，手机是否能重选回4G小区。<br>3.通话与紧急呼叫<br>（1）主叫、被叫通话是否能正常振铃、接通、通话、挂断、是否有杂音等；<br>（2）能否进行正常保持通话、呼叫转移、呼叫等待的设置；<br>（3）能否在手机无卡、有卡的情况下进行紧急呼叫（112）；<br>（4）拨打通话手机网络能否进行正常的CSFB(CMCC要求4g-&gt;2g、CU要求4g-&gt;3g)。<br>4.短、彩信<br>（1）手机是否能够正常收发短信、彩信；<br>（2）手机在通话过程中能否正常收发短信、彩信。</p>
 <h3 id="路测–手机通话掉话率"><a href="#路测–手机通话掉话率" class="headerlink" title="路测–手机通话掉话率"></a>路测–手机通话掉话率</h3><p>针对手机移动过程中掉话率的测试，三星针对每一款手机都会选择市场上各种品牌型号的手机进行对比测试。<br>例如，绕着天津外环线，测试掉话率；并抓取AP和CP log进行掉话分析。<br>测试准备：<br>1.样机DUT C7000 4台标记D1、D2、D3、D4，REF G9200 4台标记R1、R2、R3、R4<br>2.SIM卡8个（4个CMCC SIM D1/D2/R1/R2、4个CU SIM D3/D4/R3/R4）<br>测试过程：<br>1.MO-&gt;MT: D1-&gt;D2;D3-&gt;D4;R1-&gt;R2;R3-&gt;R4  -&gt;通过实验现象对比C7000与G9200掉话率<br>2.MO-&gt;MT: D1-&gt;R1;D2-&gt;R2;R3-&gt;D3;R4-&gt;D4  -&gt;通过分析MO/MT log对比C7000与G9200的掉话率<br>3.MO-&gt;MT: D1-&gt;公司座机；D2-&gt;公司座机；公司座机-&gt;D3；公司座机-&gt;D4 -&gt;通过实验现象对比C7000与G9200掉话率<br>4.MO-&gt;MT: R1-&gt;公司座机；R2-&gt;公司座机；公司座机-&gt;R3；公司座机-&gt;R4 -&gt;通过实验现象对比C7000与G9200掉话率</p>
@@ -369,8 +369,6 @@
 <p>LTE USIM的测试一般都和驻网、PIN码相关。</p>
 <p>VoLTE PCT是VoLTE协议一致性的相关测试，与LTE PCT类似。</p>
 <p>VoLTE NSIOT主要是包含的测试内容比较多，驻网、Voice Call、Video Call、IPv4/IPv6、Codec、补充业务、移动性（Inter-EUTRAN/Inter RAT）</p>
-<h2 id="协议测试还是协议开发"><a href="#协议测试还是协议开发" class="headerlink" title="协议测试还是协议开发"></a>协议测试还是协议开发</h2><p>比较常见的观点是，开发人员的技能能力、待遇、发展前景看起来要比测试人员要好很多，所以，我潜意识里的观点也是，既然有开发背景，如果有机会还是从事开发要更好一些。我不能否认自己的潜意识，但是，也不能忽略一个更客观的事实，我在测试的相关工作中，更游刃有余，更能体现自己的价值。所以，再挖掘一下自己的意识深处，我认为从事测试工作会更适合我。这也是为什么写这样一篇博客来总结接下来的工作方向。</p>
-<h2 id="怎样开始从事协议测试工作"><a href="#怎样开始从事协议测试工作" class="headerlink" title="怎样开始从事协议测试工作"></a>怎样开始从事协议测试工作</h2><p>首先就是找一份工作了，现在比较倾向于实验室测试，因为可以接触到基站模拟器（各类仪表），当然如果是基站类的测试，就会接触到很多核心网部分的协议内容，能够从协议上出发，直接与测试信令界面交互，这是对丰富协议知识的一个很好的方向。<br>其次，根据大部分协议测试招聘的岗位来看，实验室测试工作者往往也要参与场测。<br>最终，希望能尽快找到合适的工作。</p>
 
       
     </div>
@@ -481,7 +479,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -490,7 +488,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -547,7 +545,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#我做过的协议测试工作"><span class="nav-number">1.</span> <span class="nav-text">我做过的协议测试工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#手机基本功能测试"><span class="nav-number">1.1.</span> <span class="nav-text">手机基本功能测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路测–手机通话掉话率"><span class="nav-number">1.2.</span> <span class="nav-text">路测–手机通话掉话率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#针对某问题的debug测试"><span class="nav-number">1.3.</span> <span class="nav-text">针对某问题的debug测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支援移动入库实验室预测试"><span class="nav-number">1.4.</span> <span class="nav-text">支援移动入库实验室预测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#协议测试还是协议开发"><span class="nav-number">2.</span> <span class="nav-text">协议测试还是协议开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎样开始从事协议测试工作"><span class="nav-number">3.</span> <span class="nav-text">怎样开始从事协议测试工作</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#我做过的协议测试工作"><span class="nav-number">1.</span> <span class="nav-text">我做过的协议测试工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#手机基本功能测试"><span class="nav-number">1.1.</span> <span class="nav-text">手机基本功能测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路测–手机通话掉话率"><span class="nav-number">1.2.</span> <span class="nav-text">路测–手机通话掉话率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#针对某问题的debug测试"><span class="nav-number">1.3.</span> <span class="nav-text">针对某问题的debug测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#支援移动入库实验室预测试"><span class="nav-number">1.4.</span> <span class="nav-text">支援移动入库实验室预测试</span></a></li></ol></li></ol></div>
             
 
           </div>
